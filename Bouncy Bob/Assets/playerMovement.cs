@@ -8,6 +8,7 @@ public class playerMovement : MonoBehaviour
 
     public float bounce = 10f;
     public float gravity = -9.8f;
+    //private float timer = 0.0f;
 
     public Transform groundCheck;
     public float groundDistance = 0.1f;
@@ -30,13 +31,15 @@ public class playerMovement : MonoBehaviour
         //isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         //Debug.Log (isGrounded);
         //Debug.Log(velocity.y);
-        isLeftGrounded = GameObject.Find("left cap").transform.position.y < 2.3;
-        isRightGrounded = GameObject.Find("right cap").transform.position.y < 2.3;
+        isLeftGrounded = GameObject.Find("left cap").transform.position.y < 2.4;
+        isRightGrounded = GameObject.Find("right cap").transform.position.y < 2.4;
         isCentreGrounded = GameObject.Find("Centre").transform.position.y < 2.3;
         var redCylinder = GameObject.Find("Red Cylinder").GetComponent<Rigidbody>().velocity;
         var angle = Mathf.Atan2(redCylinder.y, redCylinder.z) * Mathf.Rad2Deg;
-        Debug.Log(Mathf.Cos(89));
-        Debug.Log(Mathf.Cos(89*Mathf.Deg2Rad));
+
+        // timer += Time.deltaTime;
+        // Debug.Log(timer);
+
         //float xAngle = GameObject.Find("Red Cylinder").transform.rotation.eulerAngles.x;
         float yAngle = GameObject.Find("Red Cylinder").transform.rotation.eulerAngles.y;
         float zAngle = GameObject.Find("Red Cylinder").transform.rotation.eulerAngles.z;
@@ -54,7 +57,7 @@ public class playerMovement : MonoBehaviour
             velocity.y = -2f;
         }
         if (isCentreGrounded) {
-            Debug.Log("Game Over");
+            //Debug.Log("Game Over");
         }
         if (Input.GetKey("left") && isLeftGrounded) {
             velocity.y = Mathf.Sqrt(bounce * -2f * gravity);
