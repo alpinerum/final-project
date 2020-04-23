@@ -13,6 +13,10 @@ public class npcController : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+    void OnBecameInvisible() {
+        Debug.Log("hello");
+        Destroy(gameObject);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -21,8 +25,5 @@ public class npcController : MonoBehaviour
         transform.position = transform.position + new Vector3(0, 0, speed.z);
     }
 
-    void OnBecameInvisible() {
-        Debug.Log("hello");
-        Destroy(gameObject);
-    }
+    
 }
