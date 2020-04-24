@@ -7,11 +7,11 @@ public class npcController : MonoBehaviour
 
     public Animator anim;
     Vector3 speed;
-    float timer;
+    //float timer;
     // Start is called before the first frame update
     void Start()
     {
-        timer = 0.0f;
+        //timer = 0.0f;
         anim = GetComponent<Animator>();
     }
 
@@ -34,7 +34,15 @@ public class npcController : MonoBehaviour
     void OnCollisionEnter(Collision other) {
         Debug.Log(other);
         anim.SetBool("collide", true);
-        speed.z = 0.0f;
+        speed.z = 0.0f * Time.deltaTime;
+        transform.position = transform.position + new Vector3(0, 0, speed.z);
+        StartCoroutine(coroutine());
+    }
+    
+    IEnumerator coroutine() {
+        Debug.Log("hello");
+        yield return new WaitForSeconds(3);
+        Destroy(gameObject);
     }
 
     
