@@ -46,7 +46,7 @@ public class trainBehaviour : MonoBehaviour
         // wagons[2].transform.position = Vector3.MoveTowards(transform.position, target, step);
         transform.position = Vector3.MoveTowards(transform.position, target, step);
         transform.rotation = rot;
-        Debug.Log(timer);
+        //Debug.Log(timer);
         if (transform.position.x >= 280) {
             Destroy(GameObject.Find("Train(Clone)"));
             if (timer > trainspawner.spawnDelay) {

@@ -6,23 +6,29 @@ public class playerMovement : MonoBehaviour
 {
     public CharacterController controller;
 
-    public float bounce = 10f;
+    public float bounce = 15f;
     public float gravity = -9.8f;
     //private float timer = 0.0f;
 
+    public static bool dead = false;
     public Transform groundCheck;
     public float groundDistance = 0.1f;
     public LayerMask groundMask;
 
     public GameObject Cap;
 
+    gameOver gameover;
+    private GameObject game_over;
+
     bool isLeftGrounded, isRightGrounded, isCentreGrounded;
+    bool canDieOnGround;
     Vector3 velocity;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        game_over = GameObject.Find("Game Over");
+        gameover = game_over.GetComponent<gameOver>();
     }
 
     // Update is called once per frame
@@ -56,10 +62,13 @@ public class playerMovement : MonoBehaviour
         if (isRightGrounded && velocity.y < 0) {
             velocity.y = -2f;
         }
-        if (isCentreGrounded) {
+        if (isCentreGrounded && PauseMenu.canDieOnGround) {
+            dead = true;
+            //GameObject screen = game_over.transform.GetChild(0).gameObject;
+            //screen.SetActive(true);
             //Debug.Log("Game Over");
         }
-        if (Input.GetKey("left") && isLeftGrounded) {
+        if (Input.GetKey("left") && isLeftGrounded && !dead) {
             velocity.y = Mathf.Sqrt(bounce * -2f * gravity);
             velocity.z = Mathf.Abs(bounce * Mathf.Cos(yAngle*Mathf.Deg2Rad));
             velocity.x = Mathf.Abs(bounce * Mathf.Cos(zAngle*Mathf.Deg2Rad));
@@ -67,7 +76,7 @@ public class playerMovement : MonoBehaviour
             //Debug.Log(velocity.z);
             //Debug.Log("left");
         }
-        else if (Input.GetKey("right") && isRightGrounded) {
+        else if (Input.GetKey("right") && isRightGrounded && !dead) {
             velocity.y = Mathf.Sqrt(bounce * -2f * gravity);
             velocity.z = bounce * Mathf.Cos(yAngle*Mathf.Deg2Rad);
             velocity.x = bounce * Mathf.Cos(zAngle*Mathf.Deg2Rad);
@@ -76,4 +85,9 @@ public class playerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
+
+    // void GameOver() {
+    //     float timer = 0.0f;
+    //     timer
+    // }
 }
