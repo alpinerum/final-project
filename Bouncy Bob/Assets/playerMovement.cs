@@ -10,7 +10,7 @@ public class playerMovement : MonoBehaviour
     public float gravity = -9.8f;
     //private float timer = 0.0f;
 
-    public static bool dead = false;
+    public static bool dead;
     public Transform groundCheck;
     public float groundDistance = 0.1f;
     public LayerMask groundMask;
@@ -27,6 +27,7 @@ public class playerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        dead = false;
         game_over = GameObject.Find("Game Over");
         gameover = game_over.GetComponent<gameOver>();
     }

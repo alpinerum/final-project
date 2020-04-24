@@ -15,6 +15,7 @@ public class gameOver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        timer = 0.0f;
         gameOverUI.SetActive(false);
         score = 0;
     }

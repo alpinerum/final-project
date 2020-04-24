@@ -8,4 +8,6 @@ If you make it to the end, you win.
 
 The options menu in the main menu doesn't work. To change the difficulty, load the game and pause the game to access the settings to change the difficulty.
 
-Physics is kind of wonky, sometimes it works, sometimes it doesn't
+Physics is kind of wonky, sometimes it works, sometimes it doesn't.
+
+There is a bug when you lose and you quit to main menu, if you try playing it again the game freezes.
