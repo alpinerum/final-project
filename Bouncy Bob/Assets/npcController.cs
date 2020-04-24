@@ -35,7 +35,7 @@ public class npcController : MonoBehaviour
         Debug.Log(other);
         anim.SetBool("collide", true);
         speed.z = 0.0f * Time.deltaTime;
-        transform.position = transform.position + new Vector3(0, 0, speed.z);
+        transform.position = transform.position + new Vector3(0, 0, 0);
         StartCoroutine(coroutine());
     }
     
